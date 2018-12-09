@@ -10,19 +10,20 @@ If a BIOS wants to load an operating system, it should know from the boot sector
 
 Here's the code:
 
-  ; Infinite loop (e9 fd ff)
-  loop:
+     ; Infinite loop (e9 fd ff)
+     loop:
       jmp loop 
-  ; Fill with 510 zeros minus the size of the previous code
-  times 510-($-$$) db 0
-  ; Magic number
-  dw 0xaa55 
+     ; Fill with 510 zeros minus the size of the previous code
+     times 510-($-$$) db 0
+     ; Magic number
+     dw 0xaa55 
 
 Compile command: `nasm -f bin boot_sect_simple.asm -o boot_sect_simple.bin`
 
 Run command : `qemu boot_sect_simple.bin` or `qemu-system-x86_64 boot_sect_simple.bin`
 
-You would see:
+You will see:
+
 ![Effect](effect.png)
 
 ## Want to see binary form of file
